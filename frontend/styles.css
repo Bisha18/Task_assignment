@@ -1,0 +1,341 @@
+/* --- Global Variables and Base Reset --- */
+@import url('https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DInter:wght%40100..900%26display%3Dswap');
+
+:root {
+  --primary: #4f46e5;
+  --primary-light: #818cf8;
+  --primary-dark: #3730a3;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --bg-light: #f9fafb;
+  --bg-dark: #1f2937;
+  --text-color: #374151;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Typography and Header --- */
+header {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #6b7280;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+/* --- Layout and Cards --- */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+  min-height: 400px;
+  /* Ensure visual balance */
+}
+
+/* --- Input Form and Tabs --- */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab-btn {
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #6b7280;
+  transition: color 0.2s, border-bottom 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.form-group input[type="range"] {
+  padding: 0;
+  height: 30px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+#json-input {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- Buttons and Actions --- */
+.actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#strategy-select {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: var(--text-color);
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.btn-success {
+  background-color: var(--success);
+  color: white;
+  padding: 12px 25px;
+  flex-shrink: 0;
+}
+
+.btn-success:hover {
+  background-color: #059669;
+}
+
+/* --- Staging Area --- */
+.staging-area {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.task-list-preview {
+  list-style: none;
+  padding-left: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #f3f4f6;
+}
+
+.task-list-preview li {
+  padding: 5px 0;
+  border-bottom: 1px dotted #d1d5db;
+  font-size: 0.9rem;
+}
+
+.task-list-preview li:last-child {
+  border-bottom: none;
+}
+
+/* --- Results Section (Task Cards) --- */
+#results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.placeholder-text {
+  text-align: center;
+  color: #9ca3af;
+  padding: 50px 0;
+}
+
+#loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-left: 8px solid;
+  /* For priority color coding */
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  transition: box-shadow 0.2s;
+}
+
+.task-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+  color: var(--text-color);
+}
+
+.task-card .meta {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.score-badge {
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+  font-size: 0.9rem;
+  min-width: 90px;
+  text-align: center;
+  background-color: #9ca3af;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Priority Color Coding (Smart Strategy) */
+.priority-low {
+  border-left-color: var(--success);
+}
+
+.priority-med {
+  border-left-color: var(--warning);
+}
+
+.priority-high {
+  border-left-color: var(--danger);
+}
+
+.task-card.priority-high {
+ background-color: #fef2f2; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  #strategy-select {
+    width: 100%;
+  }
+
+  .btn-success {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .task-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .score-badge {
+    align-self: flex-end;
+  }
+}

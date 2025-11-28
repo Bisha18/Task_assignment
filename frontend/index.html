@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Task Analyzer</h1>
+            <p>Prioritize your workload with intelligence.</p>
+        </header>
+
+        <main>
+            <!-- Input Section -->
+            <section class="card input-section">
+                <h2>Add Tasks</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('single')">Single Entry</button>
+                    <button class="tab-btn" onclick="switchTab('json')">Bulk JSON</button>
+                </div>
+
+                <!-- Single Entry Form -->
+                <div id="single-form" class="form-container">
+                    <div class="form-group">
+                        <input type="text" id="t-title" placeholder="Task Title" required>
+                        <input type="number" id="t-id" placeholder="ID (e.g., 1)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="t-date" required>
+                        <input type="number" id="t-hours" placeholder="Hours" min="0.5" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Importance (1-10): <span id="imp-val">5</span></label>
+                        <input type="range" id="t-imp" min="1" max="10" value="5" oninput="document.getElementById('imp-val').innerText = this.value">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="t-deps" placeholder="Dependencies IDs (comma sep: 1, 2)">
+                    </div>
+                    <button class="btn-primary" onclick="addTask()">Add to List</button>
+                </div>
+
+                <!-- Bulk JSON -->
+                <div id="json-form" class="form-container hidden">
+                    <textarea id="json-input" placeholder='[{"id": 1, "title": "Task A", ...}]'></textarea>
+                    <button class="btn-secondary" onclick="loadJson()">Load JSON</button>
+                </div>
+
+                <!-- Staging Area -->
+                <div class="staging-area">
+                    <h3>Tasks to Analyze: <span id="task-count">0</span></h3>
+                    <ul id="task-list" class="task-list-preview"></ul>
+                </div>
+
+                <div class="actions">
+                    <select id="strategy-select">
+                        <option value="smart">Smart Balance (Recommended)</option>
+                        <option value="deadline">Deadline Driven</option>
+                        <option value="fastest">Fastest Wins (Low Effort)</option>
+                        <option value="impact">High Impact</option>
+                    </select>
+                    <button class="btn-success" onclick="analyzeTasks()">Analyze Priorities</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="card results-section">
+                <h2>Analysis Results</h2>
+                <div id="loading" class="hidden">Analyzing...</div>
+                <div id="results-container">
+                    <!-- Results will be injected here -->
+                    <p class="placeholder-text">Add tasks and click Analyze to see results.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
