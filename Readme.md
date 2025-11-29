@@ -13,7 +13,7 @@ A Django-based intelligent task management system that scores and prioritizes ta
 
 1. **Clone the repository**
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Bisha18/Task_assignment
 cd task-analyzer
 ```
 
@@ -40,11 +40,8 @@ python manage.py runserver
 ```
 
 6. **Open the frontend**
-Open `frontend/index.html` in your web browser, or serve it using:
-```bash
-python -m http.server 8080
-```
-Then navigate to `http://localhost:8080/frontend/`
+Open `frontend/index.html` in your web browser, or run it by live server (VS code),
+first runs the backend server then open the frontend
 
 ### Running Tests
 ```bash
@@ -176,60 +173,11 @@ Implemented comprehensive unit tests covering:
 - Circular dependency detection
 - Past-due task handling
 - Different scoring strategies
-
-### ⏭️ Not Attempted
-Due to time constraints, I did not implement:
 - Dependency graph visualization
 - Date intelligence (weekends/holidays)
 - Eisenhower Matrix view
 - Learning system with user feedback
 
-## Future Improvements
-
-Given more time, I would enhance the system with:
-
-1. **Advanced Dependency Visualization**
-   - Interactive graph showing task relationships
-   - Visual indicators for circular dependencies
-   - Critical path highlighting
-
-2. **Machine Learning Integration**
-   - Learn from user completion patterns
-   - Adjust weights automatically based on which suggestions users actually complete
-   - Personalized scoring models per user
-
-3. **Calendar Intelligence**
-   - Integration with work calendars to avoid suggesting tasks for weekends/holidays
-   - Time-of-day awareness (morning vs. afternoon tasks)
-   - Recurring task support
-
-4. **Collaboration Features**
-   - Multi-user task assignment
-   - Team dependency tracking
-   - Shared priority views
-
-5. **Performance Optimization**
-   - Caching for frequently accessed task lists
-   - Background processing for large task sets
-   - Database query optimization with select_related/prefetch_related
-
-6. **Enhanced UX**
-   - Drag-and-drop task reordering
-   - Inline task editing
-   - Batch operations (mark multiple as complete)
-   - Dark mode support
-   - Task history and analytics
-
-7. **Scoring Refinements**
-   - Diminishing returns for very old past-due tasks (to avoid them permanently dominating)
-   - Context-aware scoring (work tasks during work hours)
-   - Energy level consideration (complex tasks when user is fresh)
-
-8. **API Enhancements**
-   - Pagination for large task lists
-   - Filtering and search capabilities
-   - Webhook notifications for task updates
-   - Export functionality (CSV, JSON)
 
 ## Technical Notes
 
@@ -239,6 +187,3 @@ Given more time, I would enhance the system with:
 - **Error Handling**: Returns appropriate HTTP status codes with error messages
 - **Code Style**: Follows PEP 8 guidelines for Python code
 
-## Contact
-
-For questions or clarifications about this implementation, please reach out via the contact information provided with the assignment submission.

@@ -8,5 +8,5 @@ def home(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/tasks/', include('tasks.urls')),
-    path('', home),  # This handles the root URL (http://127.0.0.1:8000/)
+    path('', home)
 ]

@@ -15,15 +15,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Third party
     'rest_framework',
     'corsheaders',
-    # Local
     'tasks',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # Top of list for CORS
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -33,7 +31,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Allow all for development convenience
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'task_analyzer.urls'

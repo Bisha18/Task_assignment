@@ -12,7 +12,7 @@ def calculate_smart_score(task, all_tasks_map):
     score = 0
     explanation = []
     
-    # 1. Urgency (Due Date)
+   
     try:
         today = date.today()
         due = datetime.strptime(task.get('due_date'), '%Y-%m-%d').date()
@@ -24,37 +24,32 @@ def calculate_smart_score(task, all_tasks_map):
             explanation.append("Weekend Due Date (Slight Penalty)")
 
         if days_remaining < 0:
-            score += 100  # Massive boost for overdue
+            score += 100  
             explanation.append("OVERDUE")
         elif days_remaining == 0:
             score += 50
             explanation.append("Due today")
         elif days_remaining <= 3:
-            # High score for imminent tasks
             score += (30 - (days_remaining * 5)) 
             explanation.append("Due soon")
         else:
-            # Slight decay for far future
             score += max(0, 10 - days_remaining)
             
     except (ValueError, TypeError):
         explanation.append("Invalid date")
 
-    # 2. Importance (1-10)
     importance = task.get('importance', 5)
-    score += importance * 4  # Weight importance heavily (max 40 pts)
+    score += importance * 4 
     if importance >= 8:
         explanation.append("High Importance")
 
-    # 3. Effort (Hours)
     hours = task.get('estimated_hours', 1)
     if hours <= 2:
-        score += 5  # Quick win bonus
+        score += 5 
         explanation.append("Quick Win")
     elif hours > 10:
-        score -= 5  # Large effort penalty (break it down!)
+        score -= 5 
     
-    # 4. Dependency Handling (Blocking)
     my_id = task.get('id')
     blocks_count = 0
     
@@ -105,7 +100,7 @@ def sort_tasks(tasks, strategy="smart"):
     """
     Orchestrator for sorting strategies, including the Eisenhower Matrix view logic.
     """
-    # Create a map for O(1) lookups during scoring
+ 
     tasks_map = {t.get('id'): t for t in tasks}
     
     # Check cycles first
@@ -114,10 +109,8 @@ def sort_tasks(tasks, strategy="smart"):
     processed_tasks = []
     
     for task in tasks:
-        # Clone task to avoid mutating original
         t = task.copy()
         
-        # 1. Dependency Flagging
         if t.get('id') in cycles:
             t['priority_score'] = -1
             t['explanation'] = "Circular Dependency Detected!"
@@ -153,32 +146,30 @@ def sort_tasks(tasks, strategy="smart"):
                 today = date.today()
                 due = datetime.strptime(t.get('due_date'), '%Y-%m-%d').date()
                 days_remaining = (due - today).days
-                is_urgent = days_remaining <= 3 # Define urgent as due in 3 days or less
+                is_urgent = days_remaining <= 3 
             except:
-                is_urgent = False # Assume non-urgent if date is invalid
+                is_urgent = False   
 
-            # Assign quadrant based on thresholds (e.g., Important > 7)
             if is_urgent and importance >= 7:
-                t['eisenhower_quadrant'] = "Do" # Urgent & Important
+                t['eisenhower_quadrant'] = "Do"
                 t['priority_score'] = 4
             elif importance >= 7:
-                t['eisenhower_quadrant'] = "Decide" # Not Urgent & Important
+                t['eisenhower_quadrant'] = "Decide"
                 t['priority_score'] = 3
             elif is_urgent:
-                t['eisenhower_quadrant'] = "Delegate" # Urgent & Not Important
+                t['eisenhower_quadrant'] = "Delegate"
                 t['priority_score'] = 2
             else:
-                t['eisenhower_quadrant'] = "Delete" # Not Urgent & Not Important
+                t['eisenhower_quadrant'] = "Delete"
                 t['priority_score'] = 1
                 
             t['explanation'] = f"Quadrant: {t['eisenhower_quadrant']}"
             
-        else: # Default: Smart Balance
+        else: 
             score, expl = calculate_smart_score(t, tasks_map)
             t['priority_score'] = score
             t['explanation'] = expl
             
         processed_tasks.append(t)
 
-    # Sort descending by priority_score
     return sorted(processed_tasks, key=lambda x: x['priority_score'], reverse=True)
