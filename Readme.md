@@ -19,6 +19,7 @@ cd task-analyzer
 
 2. **Set up virtual environment**
 ```bash
+cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
