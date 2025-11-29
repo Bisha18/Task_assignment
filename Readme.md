@@ -14,6 +14,7 @@ A Django-based intelligent task management system that scores and prioritizes ta
 1. **Clone the repository**
 ```bash
 git clone https://github.com/Bisha18/Task_assignment
+cd task-analyzer
 ```
 
 2. **Set up virtual environment**
