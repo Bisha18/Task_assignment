@@ -21,12 +21,11 @@ cd task-analyzer
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/Scripts/activate  # On MAC: venv/bin/activate
 ```
 
 3. **Install dependencies**
 ```bash
-cd backend
 pip install -r requirements.txt
 ```
 
